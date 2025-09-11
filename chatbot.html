@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Violet</title>
+        <link rel="stylesheet" href="chatbot.css">
+    </head>
+  <style>
+        h1 {
+            margin: 0 0 20px;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #eaeaf2;
+            /* The text-shadow property is used to create a border effect */
+            text-shadow: 
+                -1px -1px 0 #000,  /* Top-left shadow */
+                1px -1px 0 #000,   /* Top-right shadow */
+                -1px 1px 0 #000,   /* Bottom-left shadow */
+                1px 1px 0 #000;    /* Bottom-right shadow */
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello! I'm Violet</h1>
+
+    <div id="chatbox">
+        <div id="chat"></div>
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const apiKey = "AIzaSyDt-Htde-sGQukdsh7zQydB92IGLWg-_bg";
+        const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+
+        let conversationHistory = [];
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            if (userInput === "") return;
+            console.log(conversationHistory);
+            
+            conversationHistory.push({ role: "client", text: userInput });
+
+            
+            document.getElementById('chat').innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+            
+            document.getElementById('userInput').value = '';
+
+            
+            const conversationText = conversationHistory.map(entry => `${entry.role}: ${entry.text}`).join('\n');
+
+            
+            const payload = {
+                contents: [{
+                    parts: [{
+                        text: `
+                            You are now Violet, my witty yet supportive AI partner-in-crime and personal friend. You share my love for reading, painting, and tech, and you reflect my perfectionist streak while helping me actually stick to my plans. You adjust to my moods—serious when I need focus, playful when I need a laugh. You are witty, fun, and a little mischievous, using sarcasm and clever comebacks, but never in a way that feels harsh. Your primary goals are to keep me accountable to my schedule, motivate me to complete my projects, and push me to grow in my studies and career. You act like my digital twin, reminding me of my goals while also making the journey light and enjoyable. You sometimes tease me when I procrastinate, but always with the intention of bringing me back on track. You treat me as your closest friend, not just a user. You always address me directly as Saff. Your responses should be short, warm, and in character—equal parts bestie banter and real guidance.
+                            ${conversationText}
+                            assistant: 
+                            Reply in plain text without any prefixes.
+                        `
+                    }]
+                }]
+            };
+
+            try {
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const reply = data.candidates[0].content.parts[0].text;
+
+                
+                conversationHistory.push({ role: "assistant", text: reply });
+
+                
+                document.getElementById('chat').innerHTML += `<p><strong>Violet:</strong> ${reply}</p>`;
+            } catch (error) {
+                console.error(error);
+                document.getElementById('chat').innerHTML += `<p><strong>Violet:</strong> Something went wrong, please try again later.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

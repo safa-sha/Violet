@@ -1,0 +1,114 @@
+body {
+    background-image: url("bg.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Inter', sans-serif;
+    background-color: rgb(161, 201, 242);
+    margin: 20px;
+    color: #fff;
+}
+
+#chatbox {
+    width: 60%;
+    max-width: 800px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+#chat {
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #555;
+    background: rgba(88, 135, 244, 0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-message, .orion-message {
+    max-width: 80%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-message {
+    background-color: #2e59e5;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.orion-message {
+    background-color: #4a4a4a;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.orion-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url("https://i.imgur.com/K72x3zG.png");
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #fff;
+}
+
+#input-area {
+    display: flex;
+    gap: 10px;
+}
+
+input#userInput {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid #555;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+input#userInput::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+button#sendBtn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button#sendBtn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    #chatbox {
+        width: 90%;
+        margin: 20px auto;
+    }
+}

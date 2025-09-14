@@ -20,20 +20,6 @@ This project explores how we can bring AI to life in a fun, human-like way.
 ## 📸 Screenshots  
 ![Chatbot UI](Violet-chatbot.PNG "Sample chat with Violet")
 
-## 🖥️ Getting Started  
-
-## Installation & Setup
-
-1. Clone the repository:  
-   git clone https://github.com/your-username/violet.git  
-
-2. Open the project in **VS Code**:  
-   code violet  
-
-3. Open `index.html` in your browser to view the chatbot.  
-
----
-
 ## Contributing
 This was made as a personal learning + showcase project.
 But feel free to fork it, play around, and add new features!

@@ -18,7 +18,7 @@ This project explores how we can bring AI to life in a fun, human-like way.
 - **Styling**: Custom CSS  
 
 ## 📸 Screenshots  
-![Chatbot UI](./assets/Violet-chatbot.png "Sample chat with Violet")
+![Chatbot UI](Violet-chatbot.PNG "Sample chat with Violet")
 
 ## 🖥️ Getting Started  
 
